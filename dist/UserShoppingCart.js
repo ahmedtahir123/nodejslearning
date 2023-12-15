@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserShoppingCart = void 0;
 class UserShoppingCart {
     constructor() {
         this.cart = [];
@@ -17,5 +18,5 @@ class UserShoppingCart {
         return this.cart;
     }
 }
-exports.default = UserShoppingCart;
+exports.UserShoppingCart = UserShoppingCart;
 //# sourceMappingURL=UserShoppingCart.js.map

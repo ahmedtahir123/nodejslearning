@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Admin = void 0;
 class Admin {
     constructor() {
         this.books = [];
@@ -21,5 +22,5 @@ class Admin {
         }
     }
 }
-exports.default = Admin;
+exports.Admin = Admin;
 //# sourceMappingURL=Admin.js.map

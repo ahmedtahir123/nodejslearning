@@ -1,19 +1,19 @@
 import { Book } from "./Book";
 
 export class Ebook extends Book {
-    format: string;
+    _format: string;
   
     constructor(title: string, author: string, genre: string, price: number, format: string) {
       super(title, author, genre, price);
-      this.format = format;
+      this._format = format;
     }
 
-    getFormat(): string {
-        return this.format;
+    get format(): string {
+        return this._format;
       }
     
-    setFormat(newFormat: string) {
-        this.format = newFormat;
+    set format(newFormat: string) {
+        this._format = newFormat;
       }
 
       displayDetails(): void {

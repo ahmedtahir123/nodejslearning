@@ -1,29 +1,39 @@
 
 export  class User {
 
-    constructor(public name: string, public email: string,  public address: string) {}
-  
-    getName(): string {
-      return this.name;
+  private _name: string;
+  private _email: string;
+  private _address: string;
+
+    constructor( name: string,  email: string,   address: string) {
+       this._name = name;
+       this._email = email;
+       this._address =  address
+    }
+
+    get name(): string {
+      return this._name;
+    }
+
+    set name(value: string) {
+      this._name = value;
+    }
+
+     get address(): string {
+      return this._address;
+    }
+
+     set address(value: string) {
+      this._address = value;
+    }
+
+     get email(): string {
+      return this._email;
+    }
+
+     set email(value: string) {
+      this._email = value;
     }
   
-    setName(name: string): void {
-      this.name = name;
-    }
   
-    getEmail(): string {
-      return this.email;
-    }
-  
-    setEmail(email: string): void {
-      this.email = email;
-    }
-  
-    getAddress(): string {
-      return this.address;
-    }
-  
-    setAddress(address: string): void {
-      this.address = address;
-    }
   }

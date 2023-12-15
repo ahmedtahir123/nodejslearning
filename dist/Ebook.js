@@ -5,13 +5,13 @@ const Book_1 = require("./Book");
 class Ebook extends Book_1.Book {
     constructor(title, author, genre, price, format) {
         super(title, author, genre, price);
-        this.format = format;
+        this._format = format;
     }
-    getFormat() {
-        return this.format;
+    get format() {
+        return this._format;
     }
-    setFormat(newFormat) {
-        this.format = newFormat;
+    set format(newFormat) {
+        this._format = newFormat;
     }
     displayDetails() {
         super.displayDetails(); // Call the base class displayDetails method
