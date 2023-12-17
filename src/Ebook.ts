@@ -3,8 +3,8 @@ import { Book } from "./Book";
 export class Ebook extends Book {
     _format: string;
   
-    constructor(title: string, author: string, genre: string, price: number, format: string) {
-      super(title, author, genre, price);
+    constructor(title: string, author: string, genre: string, price: number, format: string, desc: string, coverImage: string, rating: number) {
+      super(title, author, genre, price, desc, coverImage, rating);
       this._format = format;
     }
 

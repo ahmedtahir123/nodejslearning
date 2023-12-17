@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ebook = void 0;
 const Book_1 = require("./Book");
 class Ebook extends Book_1.Book {
-    constructor(title, author, genre, price, format) {
-        super(title, author, genre, price);
+    constructor(title, author, genre, price, format, desc, coverImage, rating) {
+        super(title, author, genre, price, desc, coverImage, rating);
         this._format = format;
     }
     get format() {
