@@ -20,8 +20,8 @@ import { UserShoppingCart } from "./UserShoppingCart";
 
   console.log('User\'s Shopping Cart:', shoppingCart.viewCart());
 
-  const creditCardPayment = new CreditCardPayment("1234-5678-9012-3456", 123 , "12/24");
-  creditCardPayment.processPayment(150);
+  const creditCardPayment = new CreditCardPayment("1234-5678-9012-3456", 123 , "12/24", 150);
+  creditCardPayment.processPayment();
 
   const admin = new Admin();
   admin.addBookToInventory(myBook);
