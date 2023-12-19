@@ -1,7 +1,7 @@
 import { Payment } from "./Payment";
 
 export class CreditCardPayment extends Payment {
-    constructor(public cardNumber: string, public cvv: number, public expiryDate: string, public amount: number) {
+    constructor(private cardNumber: string, private cvv: number, private expiryDate: string, private amount: number) {
       super();
     }
   

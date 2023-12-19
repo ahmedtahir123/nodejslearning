@@ -1,7 +1,7 @@
 import { Payment } from "./Payment";
 
 export class PayPalPayment extends Payment {
-    constructor(public email: string, public password: string,public amount: number) {
+    constructor(private email: string, private password: string,private amount: number) {
       super();
       this.email = email;
       this.password = password;
