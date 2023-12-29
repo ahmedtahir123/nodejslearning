@@ -1,16 +1,17 @@
 import { Router } from 'express';
 import { Blog } from '../Models/blog';
+import { permission } from '../Middleware/permission';
 
 const router = Router();
 
 
 const blogs: Blog[] = [];
 
-router.get('/blogs', (req, res) => {
+  router.get('/blogs', (req, res) => {
   res.json(blogs);
 });
 
-router.get('/blogs/:id', (req, res) => {
+  router.get('/blogs/:id', (req, res) => {
     const blog = blogs.find(b => b.id === req.params.id);
     if (!blog) {
       return res.status(404).send('Blog not found');
@@ -19,7 +20,6 @@ router.get('/blogs/:id', (req, res) => {
   });
 
   router.post('/blogs', (req, res) => {
-    
     const { title, content, username } = req.body;
     const newBlog = new Blog(new Date().valueOf().toString(), title, content, username, blogs.length ? blogs.length + 1 : 1 );
     blogs.push(newBlog);
@@ -27,7 +27,7 @@ router.get('/blogs/:id', (req, res) => {
   });
 
 
-  router.put('/blogs/:id', (req, res) => {
+  router.put('/blogs/:id',permission,  (req, res) => {
     const { title, content } = req.body;
     const blog = blogs.find(b => b.id === req.params.id);
     if (!blog) {
@@ -38,7 +38,7 @@ router.get('/blogs/:id', (req, res) => {
     res.json(blog);
   });
 
-  router.delete('/blogs/:id', (req, res) => {
+  router.delete('/blogs/:id', permission,  (req, res) => {
     const index = blogs.findIndex(b => b.id === req.params.id);
     if (index === -1) {
       return res.status(404).send('Blog not found');
