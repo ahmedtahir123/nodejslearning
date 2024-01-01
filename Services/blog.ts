@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Blog } from '../Models/blog';
 import { permission } from '../Middleware/permission';
+import { blobModel } from '../Middleware/blogModel';
 
 const router = Router();
 
@@ -19,7 +20,7 @@ const blogs: Blog[] = [];
     res.json(blog);
   });
 
-  router.post('/blogs', (req, res) => {
+  router.post('/blogs', blobModel,  (req, res) => {
     const { title, content, username } = req.body;
     const newBlog = new Blog(new Date().valueOf().toString(), title, content, username, blogs.length ? blogs.length + 1 : 1 );
     blogs.push(newBlog);
@@ -27,7 +28,7 @@ const blogs: Blog[] = [];
   });
 
 
-  router.put('/blogs/:id',permission,  (req, res) => {
+  router.put('/blogs/:id', permission, blobModel,   (req, res) => {
     const { title, content } = req.body;
     const blog = blogs.find(b => b.id === req.params.id);
     if (!blog) {
