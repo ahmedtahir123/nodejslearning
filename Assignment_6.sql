@@ -190,3 +190,21 @@ JOIN
 SELECT * FROM ShoppingCartView WHERE user_id = 1;
 SELECT * FROM OrderView WHERE order_id = 101;    
 
+
+
+DELIMITER //
+CREATE PROCEDURE `book_store`.CreateOrder(IN userId INT, OUT orderId INT)
+BEGIN 
+DECLARE totalAmount DECIMAL(10, 2);
+DECLARE cartId INT;	
+SELECT cart_id INTO cartId FROM shopping_carts WHERE user_id = userId;
+SELECT SUM(quantity * price) INTO totalAmount FROM cart_items WHERE cart_id = cartId;
+INSERT INTO orders (user_id, order_date, total_amount) VALUES (userId, NOW(), totalAmount);
+SET orderId = LAST_INSERT_ID();
+INSERT INTO order_items (order_id, book_id, quantity, price)
+SELECT orderId, book_id, quantity, price FROM cart_items WHERE cart_id = cartId;
+DELETE FROM cart_items WHERE cart_id = cartId;
+DELETE FROM shopping_carts WHERE cart_id = cartId;
+END //
+DELIMITER ;
+
