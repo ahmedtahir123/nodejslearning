@@ -135,5 +135,58 @@ SELECT * FROM `book_store`.`users`  WHERE user_id  = 9;
 SELECT * FROM `book_store`.`shopping_carts` WHERE user_id = 4;  
 INSERT INTO `book_store`.`cart_items` (cart_id, book_id, quantity, price)
 VALUES (2, 5, 1, 25.50 );
-SELECT * FROM `book_store`.`cart_items`
+SELECT * FROM `book_store`.`cart_items`;
+
+
+
+CREATE INDEX idx_users_email ON `book_store`.`users` (email);
+CREATE INDEX idx_books_price ON `book_store`.`books` (price);
+
+
+CREATE VIEW `book_store`.`shopping_cart_view` AS
+SELECT 
+    sc.cart_id,
+    sc.user_id,
+    u.name AS user_name,
+    u.email AS user_email,
+    ci.item_id,
+    ci.book_id,
+    b.title AS book_title,
+    ci.quantity,
+    ci.price
+FROM 
+    `book_store`.`shopping_carts` sc
+JOIN 
+    `book_store`.`users` u ON sc.user_id = u.user_id
+JOIN 
+    `book_store`.cart_items ci ON sc.cart_id = ci.cart_id
+JOIN 
+    `book_store`.books b ON ci.book_id = b.book_id;
+    
+    
+CREATE VIEW `book_store`.`order_view`  AS
+SELECT 
+    o.order_id,
+    o.user_id,
+    u.name AS user_name,
+    u.email AS user_email,
+    oi.item_id,
+    oi.book_id,
+    b.title AS book_title,
+    oi.quantity,
+    oi.price,
+    o.order_date,
+    o.total_amount
+FROM 
+    `book_store`.orders o
+JOIN 
+    `book_store`.users u ON o.user_id = u.user_id
+JOIN 
+   `book_store`.order_items oi ON o.order_id = oi.order_id
+JOIN 
+    `book_store`.books b ON oi.book_id = b.book_id;
+    
+
+SELECT * FROM ShoppingCartView WHERE user_id = 1;
+SELECT * FROM OrderView WHERE order_id = 101;    
 
