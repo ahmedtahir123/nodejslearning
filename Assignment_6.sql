@@ -208,3 +208,16 @@ DELETE FROM shopping_carts WHERE cart_id = cartId;
 END //
 DELIMITER ;
 
+DELIMITER //
+
+CREATE TRIGGER AfterOrderPlaced
+AFTER INSERT ON `book_store`.order_items
+FOR EACH ROW
+BEGIN
+    UPDATE `book_store`.books
+    SET quantity = quantity - NEW.quantity
+    WHERE book_id = NEW.book_id;
+END//
+
+DELIMITER ;
+
