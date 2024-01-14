@@ -221,3 +221,15 @@ END//
 
 DELIMITER ;
 
+
+CREATE PROCEDURE ViewOrderHistory(IN user_id INT)
+BEGIN
+    SELECT o.order_id, o.order_date, o.total_amount, oi.book_id, b.title, oi.quantity, oi.price
+    FROM `book_store`.orders o
+    JOIN `book_store`.order_items oi ON o.order_id = oi.order_id
+    JOIN `book_store`.books b ON oi.book_id = b.book_id
+    WHERE o.user_id = user_id;
+END //
+
+DELIMITER ;
+
