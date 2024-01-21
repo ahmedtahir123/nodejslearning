@@ -1,26 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Admin_1 = require("./Admin");
-const Book_1 = require("./Book");
-const CreditCardPayment_1 = require("./CreditCardPayment");
-const Ebook_1 = require("./Ebook");
-const BookGenre_1 = require("./FrontEnd/Enums/BookGenre");
-const User_1 = require("./User");
-const UserShoppingCart_1 = require("./UserShoppingCart");
-const myBook = new Book_1.Book('Sample Book', 'John Doe', BookGenre_1.BookGenre.Fiction, 100.99, "description", "URL", 5);
-myBook.displayDetails();
-const myEbook = new Ebook_1.Ebook('Ebook Sample', 'Jane Doe', BookGenre_1.BookGenre.NonFiction, 19.99, 'PDF', "description", "URL", 5);
-myEbook.displayDetails();
-const user = new User_1.User('ahmed', 'ahmed@gmai.com', 'karachi', "username", "password");
-const shoppingCart = new UserShoppingCart_1.UserShoppingCart();
-shoppingCart.addBook(myBook);
-console.log('User\'s Shopping Cart:', shoppingCart.viewCart());
-const creditCardPayment = new CreditCardPayment_1.CreditCardPayment("1234-5678-9012-3456", 123, "12/24");
-creditCardPayment.processPayment(150);
-const admin = new Admin_1.Admin();
-admin.addBookToInventory(myBook);
-admin.addBookToInventory(myEbook);
-admin.updateBookInInventory(myBook, new Book_1.Book('Updated Book', 'John Doe', BookGenre_1.BookGenre.NonFiction, 39.99, "description", "URL", 5));
-admin.deleteBookFromInventory(myEbook);
-console.log('Updated Book Inventory:', admin.books);
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+const port = 3000;
+app.use(express_1.default.json());
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
 //# sourceMappingURL=app.js.map
