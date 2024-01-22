@@ -11,6 +11,7 @@ const Order_1 = require("./Entities/Order");
 const OrderItem_1 = require("./Entities/OrderItem");
 const ShoppingCart_1 = require("./Entities/ShoppingCart");
 const User_1 = require("./Entities/User");
+const book_1 = __importDefault(require("../src/Entities/Services/book"));
 const app = (0, express_1.default)();
 const port = 3000;
 const dataSource = new typeorm_1.DataSource({
@@ -30,6 +31,7 @@ dataSource.initialize()
 })
     .catch((error) => console.log(error));
 app.use(express_1.default.json());
+app.use('/api', book_1.default);
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });

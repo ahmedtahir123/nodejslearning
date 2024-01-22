@@ -6,7 +6,7 @@ import { orders } from './Entities/Order';
 import { OrderItem } from './Entities/OrderItem';
 import { ShoppingCart } from './Entities/ShoppingCart';
 import { users } from './Entities/User';
-import book  from '../src/Entities/Services/book';
+import book  from './Services/book';
 
 const app = express();
 const port = 3000;

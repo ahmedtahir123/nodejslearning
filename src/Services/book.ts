@@ -1,8 +1,8 @@
 import { Router } from 'express';
-// import { permission } from '../Middleware/permission';
+import { permission } from '../Middleware/permission';
 
 import { getConnection, getRepository } from 'typeorm';
-import { books as bookStore } from '../Book';
+import { books as bookStore } from '../Entities/Book';
 
 const router = Router();
 
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update a book
-router.put('/:id', async (req, res) => {
+router.put('/:id', permission ,async (req, res) => {
   const bookRepository = getRepository(bookStore);
   const book = await bookRepository.findOneBy( {id: parseInt(req.params.id) });
   if (book) {
@@ -41,7 +41,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a book
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', permission ,async (req, res) => {
   const bookRepository = getRepository(bookStore);
   const result = await bookRepository.delete(req.params.id);
   return result.affected ? res.status(204).send() : res.status(404).send('Book not found');
@@ -51,7 +51,7 @@ router.get('/author/:author', async (req, res) => {
   try {
     const books = await findBooksByAuthor(req.params.author);
     res.json(books);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 });
@@ -61,7 +61,7 @@ router.get('/title/:title', async (req, res) => {
   try {
     const books = await findBooksByTitle(req.params.title);
     res.json(books);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 });
@@ -71,7 +71,7 @@ router.get('/genre/:genre', async (req, res) => {
   try {
     const books = await findBooksByGenre(req.params.genre);
     res.json(books);
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 });
