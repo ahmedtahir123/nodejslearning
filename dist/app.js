@@ -11,12 +11,12 @@ const Order_1 = require("./Entities/Order");
 const OrderItem_1 = require("./Entities/OrderItem");
 const ShoppingCart_1 = require("./Entities/ShoppingCart");
 const User_1 = require("./Entities/User");
-const book_1 = __importDefault(require("../src/Entities/Services/book"));
+const book_1 = __importDefault(require("./Services/book"));
 const app = (0, express_1.default)();
 const port = 3000;
 const dataSource = new typeorm_1.DataSource({
     type: "mysql",
-    host: "book_store",
+    host: "127.0.0.1",
     port: 3306,
     username: "root",
     password: "root",

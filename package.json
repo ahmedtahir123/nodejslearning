@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon src/Assignment7-8/app.ts",
     "build": "tsc -p ."
   },
   "keywords": [],
@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.0",
     "mysql2": "^3.7.1",
     "reflect-metadata": "^0.2.1",
     "typeorm": "^0.3.19"
