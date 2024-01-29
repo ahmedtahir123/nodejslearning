@@ -1,5 +1,6 @@
 import express from 'express';
 import blog from './Services/Blog' 
+import categories from './Services/Categories' 
 
 import { MongoClient, ServerApiVersion } from 'mongodb';
 const uri = "mongodb+srv://amuhammad:root@cluster0.19tqpfg.mongodb.net/?retryWrites=true&w=majority";
@@ -25,6 +26,7 @@ const client = new MongoClient(uri);
 
 
 app.use('/api/posts', blog);
+app.use('/api/categories', categories);
 
 // Define routes here
 

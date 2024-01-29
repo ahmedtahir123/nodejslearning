@@ -7,7 +7,8 @@ const postSchema = new mongoose.Schema({
   categories: [String],
   tags: [String],
   datePosted: Date,
-  comments: [{ body: String, date: Date }]
+  comments: [{ body: String, date: Date }],
+  views: { type: Number, default: 0 }
 });
 
 const Post = mongoose.model('Post', postSchema);
