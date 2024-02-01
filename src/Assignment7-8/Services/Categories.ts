@@ -24,4 +24,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-export default  categories ;
+export default  router ;
