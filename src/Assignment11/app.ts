@@ -1,35 +1,21 @@
-import express from 'express';
-import http from 'http';
-import { Server, Socket } from 'socket.io';
-import path from 'path';
+import express from "express";
+import emailQueue from "./reciever";
+import emailNotificationService from "./sender";
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+app.use(express.json());
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/socket.io', express.static(path.join(__dirname, 'node_modules', 'socket.io', 'client-dist')));
-
-// Handle socket connections
-io.on('connection', (socket: Socket) => {
-    console.log('Client connected:', socket.id);
-
-    // Listen for messages from client
-    socket.on('message', (message: string) => {
-        console.log('Message received:', message);
-        // Broadcast the message to all clients
-        io.emit('message', message);
-    });
-
-    // Handle disconnection
-    socket.on('disconnect', () => {
-        console.log('Client disconnected:', socket.id);
-    });
+app.get("/", (req, res) => {
+  res.send("this is node js app");
 });
 
-const PORT = process.env.PORT || 3000;
+app.post("/comment", (req, res) => {
+  const body = req.body;
+  emailNotificationService(body);
+  res.send("Comment added successfully!");
+});
 
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+  emailQueue();
 });
