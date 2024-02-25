@@ -7,11 +7,8 @@ export interface BlogComment {
 }
 
  const  emailNotificationService = (comment: BlogComment): void =>  {
-  amqp.connect("amqp://localhost",  (error: any, connection: { createChannel: (arg0: (error1: any, channel: any) => void) => void; close: () => void; }) => {
-    connection.createChannel( (error1: any, channel: { assertQueue: (arg0: string, arg1: { durable: boolean; }) => void; sendToQueue: (arg0: string, arg1: Buffer) => void; }) => {
-      if (error1) {
-        throw error1;
-      }
+  amqp.connect("amqp://localhost",  (error, connection) => {
+    connection.createChannel( (error, channel) => {
       const queue = "email";
       channel.assertQueue(queue, {
         durable: false,
